@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.springboot.spring.helloworld;
 
+import com.springboot.spring.helloworld.HelloWorldBean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,15 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorld {
     
-    @GetMapping(path = "/helloworld")
+    @GetMapping(path = "/hello")
     public String HelloWorld(){
-    return "Hello World";
+    return "Hello baby";
     }
-    
-    @GetMapping(path = "/helloworldbean")
+   
+@GetMapping("/worlds")
     public HelloWorldBean hwb(){
     return new HelloWorldBean("Hello World");
     }
+    
 //http://localhost:9090/helloworldbean#
     @GetMapping(path = "/helloworld/{name}")
     public HelloWorldBean hwb(@PathVariable String name){

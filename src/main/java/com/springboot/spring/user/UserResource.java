@@ -5,8 +5,10 @@
  */
 package com.springboot.spring.user;
 
+import com.springboot.spring.questions.QuestionNotFoundException;
 import java.net.URI;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +50,7 @@ public class UserResource {
     //createUser i/o: deaisl of user
     //o/p: create and return the created URI
     @PostMapping("/usersave")
-    public  ResponseEntity<Object> createUser(@RequestBody User user)
+    public  ResponseEntity<Object> createUser(@Valid @RequestBody User user)
     {
         User savedUser = service.save(user);
         
@@ -61,4 +63,15 @@ public class UserResource {
        return ResponseEntity.created(location).build();
         
     }
+    
+    @GetMapping("/users/{id}")
+    public void deleteQuestion(@PathVariable int id){
+    User user = service.DeleteById(id);
+    
+    if(user == null)
+    {
+        throw new QuestionNotFoundException("id-"+ id);
+    }
+    
+   }
 }
